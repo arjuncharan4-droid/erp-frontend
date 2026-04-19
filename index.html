@@ -28,12 +28,12 @@
 
   <div class="card">
     <h3>Total Purchase</h3>
-    <h2>₹3,20,000</h2>
+    <h2 id="purchase">Loading...</h2>
   </div>
 
   <div class="card">
     <h3>Total Sales</h3>
-    <h2>₹4,45,000</h2>
+    <h2 id="sales">Loading...</h2>
   </div>
 
   <canvas id="chart"></canvas>
@@ -52,5 +52,12 @@ new Chart(document.getElementById("chart"), {
 });
 </script>
 
-</body>
+<script>
+fetch("https://erp-backend-ja45.onrender.com/dashboard")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("purchase").innerText = "₹" + data.totalPurchase;
+    document.getElementById("sales").innerText = "₹" + data.totalSales;
+  });
+</script></body>
 </html>
